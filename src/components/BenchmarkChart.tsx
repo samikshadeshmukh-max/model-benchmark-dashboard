@@ -22,23 +22,48 @@ type BenchmarkChartProps = {
 
 function BenchmarkChart({ benchmarks }: BenchmarkChartProps) {
   return (
-    <div className="chart-container">
-      <h2>Benchmark Comparison</h2>
+    <ResponsiveContainer width="100%" height={380}>
+      <BarChart
+        data={benchmarks}
+        margin={{
+          top: 10,
+          right: 20,
+          left: 10,
+          bottom: 10,
+        }}
+      >
+        <CartesianGrid strokeDasharray="3 3" />
 
-      <ResponsiveContainer width="100%" height={350}>
-        <BarChart data={benchmarks}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="model" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
+        <XAxis
+          dataKey="model"
+          tick={{ fontSize: 12 }}
+        />
 
-          <Bar dataKey="mmlu" name="MMLU" />
-          <Bar dataKey="gsm8k" name="GSM8K" />
-          <Bar dataKey="humanEval" name="HumanEval" />
-        </BarChart>
-      </ResponsiveContainer>
-    </div>
+        <YAxis
+          domain={[0, 100]}
+          tick={{ fontSize: 12 }}
+        />
+
+        <Tooltip />
+
+        <Legend />
+
+        <Bar
+          dataKey="mmlu"
+          name="MMLU"
+        />
+
+        <Bar
+          dataKey="gsm8k"
+          name="GSM8K"
+        />
+
+        <Bar
+          dataKey="humanEval"
+          name="HumanEval"
+        />
+      </BarChart>
+    </ResponsiveContainer>
   );
 }
 
